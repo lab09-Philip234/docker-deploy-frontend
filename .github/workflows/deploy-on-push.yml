@@ -33,7 +33,7 @@ jobs:
                 with:
                     context: .
                     push: true
-                    tags: philiphousden/234-deploylab-frontendProd:latest
+                    tags: philiphousden/234-deploylab-frontendprod:latest
             -
                 name: copy file via ssh password
                 uses: appleboy/scp-action@v0.1.4
@@ -43,7 +43,7 @@ jobs:
                     key: ${{secrets.HOST_SSH_PRIVATE_KEY}}
                     port: 22
                     source: "docker-compose-prod.yml"
-                    target: "/home/ubuntu/frontend"
+                    target: "/home/ubuntu/frontendprod"
             -
                 name: docker compose
                 uses: appleboy/ssh-action@v0.1.10
@@ -53,7 +53,7 @@ jobs:
                     key: ${{secrets.HOST_SSH_PRIVATE_KEY}}
                     port: 22
                     script: |
-                        cd /home/ubuntu/frontend
+                        cd /home/ubuntu/frontendprod
                         echo ${{secrets.DOCKER_HUB_TOKEN}} | docker login --username ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
                         docker compose down
                         docker compose pull
