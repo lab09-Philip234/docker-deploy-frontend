@@ -3,4 +3,4 @@ services:
   frontend:
     image: philiphousden/234-deploylab-frontendprod:latest
     ports:
-    - "9999:80"
+    - "999:80"
